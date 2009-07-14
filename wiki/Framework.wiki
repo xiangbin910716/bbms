@@ -1,0 +1,20 @@
+= The framework of BBMS =
+  # Message
+  # BUS Manager
+  # Notifiable entry
+
+= Features =
+  # Asynchronous event notification
+  # Distributed application support
+  # Allow separate business components to be combined into a reliable, flexible system.
+
+= Workflow =
+  # BUS Manager start up and wait for client to register themselves.
+  # Client register to BUS to listener events(messages) it cares about.
+  # When message comes, BUS schedule the dispatch thread to send the message to appropriate node of listeners.
+  # Client unregister from BUS, and quit from the system.
+
+= Developing a BBMS client =
+  # Find the BUS Manager(Message Service Provider)
+  # Register itself on the Manager
+  # Can send and receive messages from the BUS then.
