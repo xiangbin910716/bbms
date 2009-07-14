@@ -8,7 +8,7 @@ BBMS is very easy to use, and provide powerful *_event-listener_* framework. Gen
 
 Only one thing is must when you implement a notifiable entry on you own, it's the method _update_:
 
-<pre>
+{{{
 	/**
 	 * This is the only one MUST implemented method for end user, put the
 	 * event-handler code here
@@ -19,18 +19,18 @@ Only one thing is must when you implement a notifiable entry on you own, it's th
 				", get message from : "+event.getSource()+
 				", it said that : "+event.getBody());
 	}
-</pre>
+}}}
 When event from bus, this _update_ method will be invoked, you can do whatever you want here.
 
 == New a *_Configuration_* ==
 
-<pre>
+{{{
 Configuration config = new RMIServerConfiguration(null, 0);
-</pre>
+}}}
 The _RMIServerConfiguration_ reads a properties to know where the Message Service is.
 
 == New a concrete Notifiable Entry ==
-<pre>
+{{{
 		/*
 		 * create a notifiable entry, declare that it's care of
 		 * TIMEOUT, CLOSE, and READY event.
@@ -51,24 +51,24 @@ The _RMIServerConfiguration_ reads a properties to know where the Message Servic
 				MessageTypes.MESSAGE_OPEN | 
 				MessageTypes.MESSAGE_CLOSE | 
 				MessageTypes.MESSAGE_TIMEOUT);
-</pre>
+}}}
 
 == Create *_Message_* ==
 
-<pre>
+{{{
 		// new a message, of type MESSAGE_OPEN.
 		Message msg = new CommonMessage(
 				entry1.getId(),
 				entry2.getId(),
 				MessageTypes.MESSAGE_OPEN,
 				"busying now");
-</pre>
+}}}
 
 new a message which will be sent from entry1 to entry2, and with type *_MESSAGE_OPEN_*.
 
 == Put them together ==
 
-<pre>
+{{{
 	public static void main(String[] args) throws RemoteException{
 		/*
 		 * create a notifiable entry, declare that it's care of
@@ -132,6 +132,6 @@ new a message which will be sent from entry1 to entry2, and with type *_MESSAGE_
 		entry1.unregister();
 		entry2.unregister();
 	}
-</pre>
+}}}
 
 One thing need to note is that when you finished message deliver, you'd butter *_unregister_* it from the Remote Bus.
