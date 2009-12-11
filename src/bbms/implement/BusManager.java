@@ -8,6 +8,8 @@ import bbms.config.Configuration;
 import bbms.framework.Bus;
 
 /**
+ * This is the main entry of BBMS, will start the server
+ * to wait client to post messages on BUS.
  * 
  * @author juntao.qiu@gmail.com
  *
