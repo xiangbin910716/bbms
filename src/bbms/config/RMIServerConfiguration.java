@@ -6,6 +6,8 @@ import bbms.util.PropLoader;
 
 
 /**
+ * A very simple RMI-Server configuration implementation, load
+ * configure from properties file on <code>BUS</code> server.
  * 
  * @author juntao.qiu@gmail.com
  *
