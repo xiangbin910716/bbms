@@ -8,11 +8,11 @@ import bbms.implement.CommonMessage;
 import bbms.implement.CommonNotifiableEntry;
 import bbms.util.MessageTypes;
 
-
-
-
-
-
+/**
+ * 
+ * @author juntao.qiu@china.jinfonet.com
+ *
+ */
 public class Test{
 	public static void main(String[] args) throws RemoteException{
 		/*
