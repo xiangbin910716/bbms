@@ -14,7 +14,7 @@ import bbms.util.MessageTypes;
 
 /**
  * 
- * @author Abruzzi
+ * @author juntao.qiu@gmail.com
  *
  */
 public class MessageBus extends UnicastRemoteObject implements Bus{
@@ -74,10 +74,9 @@ public class MessageBus extends UnicastRemoteObject implements Bus{
 	}
 	
 	/**
-	 * 
-	 * @author Abruzzi
 	 * worker thread, dispatch message to appropriate listener
-	 *
+	 * 
+	 * @author juntao.qiu@gmail.com
 	 */
 	private class Daemon implements Runnable{
 		private boolean loop = true;
