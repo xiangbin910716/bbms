@@ -1,5 +1,13 @@
 package bbms.framework;
 
+/**
+ * This is the core definition of the <code>BBMS</code>, while user can
+ * mount thire object on bus to listener events, or post messages to 
+ * other objects mounted on the <code>BUS</code>
+ * 
+ * @author juntao.qiu@gmail.com
+ *
+ */
 public interface Bus extends java.rmi.Remote{
 	/**
 	 * mount an notifiable entry on bus
