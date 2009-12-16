@@ -7,7 +7,7 @@ import java.util.List;
 
 import bbms.framework.Bus;
 import bbms.framework.Message;
-import bbms.framework.NotifiableEntry;
+import bbms.framework.NotifiableEntity;
 import bbms.util.MessageTypes;
 
 
@@ -19,7 +19,7 @@ import bbms.util.MessageTypes;
  */
 public class MessageBus extends UnicastRemoteObject implements Bus{
 	private static MessageBus instance;
-	private List<NotifiableEntry> listeners;
+	private List<NotifiableEntity> listeners;
 	private List<Message> messages;
 	private Thread daemonThread = null;
 	
@@ -31,7 +31,7 @@ public class MessageBus extends UnicastRemoteObject implements Bus{
 	}
 	
 	private MessageBus() throws RemoteException{
-		listeners = new LinkedList<NotifiableEntry>();
+		listeners = new LinkedList<NotifiableEntity>();
 		messages = new LinkedList<Message>();
 		Daemon daemon = new Daemon();
 		daemonThread = new Thread(daemon);
@@ -45,7 +45,7 @@ public class MessageBus extends UnicastRemoteObject implements Bus{
 	/**
 	 * mount notifiable object to listener list
 	 */
-	public void mount(NotifiableEntry entry) throws RemoteException{
+	public void mount(NotifiableEntity entry) throws RemoteException{
 		synchronized(listeners){
 			listeners.add(entry);
 			listeners.notifyAll();
@@ -55,7 +55,7 @@ public class MessageBus extends UnicastRemoteObject implements Bus{
 	/**
 	 * unmount the special notifiable object from listener
 	 */
-	public void unmount(NotifiableEntry entry) throws RemoteException{
+	public void unmount(NotifiableEntity entry) throws RemoteException{
 		synchronized(listeners){
 			listeners.remove(entry);
 			listeners.notifyAll();
@@ -112,12 +112,12 @@ public class MessageBus extends UnicastRemoteObject implements Bus{
 			target = msg.getTarget();
 			type = msg.getType();
 			if(target == MessageTypes.SENDTOALL){
-				for(NotifiableEntry entry : listeners){
+				for(NotifiableEntity entry : listeners){
 					mask = entry.getSense();
 					if((mask & type) == type){entry.update(msg);}
 				}
 			}else{
-				for(NotifiableEntry entry : listeners){
+				for(NotifiableEntity entry : listeners){
 					mask = entry.getSense();
 					if(entry.getId().equals(target) && (mask & type) == type){
 						entry.update(msg);
