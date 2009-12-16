@@ -24,9 +24,12 @@ public class MessageBus extends UnicastRemoteObject implements Bus{
 	private Thread daemonThread = null;
 	
 	public static MessageBus getInstance() throws RemoteException{
-		if(instance == null){
-			instance = new MessageBus();
+		synchronized(MessageBus.class){
+			if(instance == null){
+				instance = new MessageBus();
+			}	
 		}
+
 		return instance;
 	}
 	
@@ -111,7 +114,7 @@ public class MessageBus extends UnicastRemoteObject implements Bus{
 		try {
 			target = msg.getTarget();
 			type = msg.getType();
-			if(target == MessageTypes.SENDTOALL){
+			if(target.equals(MessageTypes.SENDTOALL)){
 				for(NotifiableEntity entry : listeners){
 					mask = entry.getSense();
 					if((mask & type) == type){entry.update(msg);}
