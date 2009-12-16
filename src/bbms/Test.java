@@ -5,7 +5,7 @@ import bbms.config.Configuration;
 import bbms.config.RMIServerConfiguration;
 import bbms.framework.Message;
 import bbms.implement.CommonMessage;
-import bbms.implement.CommonNotifiableEntry;
+import bbms.implement.CommonNotifiableEntity;
 import bbms.util.MessageTypes;
 
 /**
@@ -20,8 +20,8 @@ public class Test{
 		 * TIMEOUT, CLOSE, and READY event.
 		 */
 		Configuration config = new RMIServerConfiguration(null, 0);
-		CommonNotifiableEntry entry1 = 
-			new CommonNotifiableEntry(config, "client1", 
+		CommonNotifiableEntity entry1 = 
+			new CommonNotifiableEntity(config, "client1", 
 				MessageTypes.MESSAGE_TIMEOUT | 
 				MessageTypes.MESSAGE_CLOSE | 
 				MessageTypes.MESSAGE_READY);
@@ -30,8 +30,8 @@ public class Test{
 		 * create another notifiable entry, declare that it's care of
 		 * OPEN, CLOSE, and TIMEOUT event.
 		 */
-		CommonNotifiableEntry entry2 = 
-			new CommonNotifiableEntry(config, "client2", 
+		CommonNotifiableEntity entry2 = 
+			new CommonNotifiableEntity(config, "client2", 
 				MessageTypes.MESSAGE_OPEN | 
 				MessageTypes.MESSAGE_CLOSE | 
 				MessageTypes.MESSAGE_TIMEOUT);
